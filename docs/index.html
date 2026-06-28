@@ -70,7 +70,7 @@ const sheetIndex = 2;
 
 const URL = "https://script.google.com/macros/s/AKfycbypPFBDmABPfDLdwWFosDjUimPlt1eoTL8ttGOXRUVmIe2my5dn9h4yPnpxn9Q0OHhznA/exec";
 
-let beschikbarePlekken = 10;
+let beschikbarePlekken = 8;
 
 // ➕ toevoegen
 function addPersoon() {
@@ -111,7 +111,7 @@ function updateCount() {
 
 function handleCount(data) {
   try {
-    beschikbarePlekken = data.left || 10;
+    beschikbarePlekken = data.left || 8;
 
     const titel = document.getElementById("titel");
     if (titel) titel.innerText = data.name || "Workshop";
