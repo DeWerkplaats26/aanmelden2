@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+  <title>Workshop aanmelden</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #f3eeeb;
+      text-align: center;
+    }
+
+    .box {
+      background: white;
+      padding: 25px;
+      margin: 50px auto;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 12px;
+    }
+
+    input, button {
+      width: 90%;
+      padding: 12px;
+      font-size: 16px;
+      margin: 6px;
+    }
+
+    button {
+      background: #645dd1;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 25px;
+    }
+
+    .persoon {
+      border-top: 1px solid #ddd;
+      margin-top: 10px;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<img src="logo.jpeg" style="width: 300px; margin-bottom: 20px;">
+<p id="statusTop">Laden...</p>
+
+<div class="box">
+  <h2 id="titel">Workshop</h2>
+  <p id="status">Laden...</p>
+
+  <form onsubmit="sendData(event)">
+    <div id="personen"></div>
+
+    <button type="submit" id="btn">Aanmelden</button>
+    <button type="button" onclick="addPersoon()">+ Persoon toevoegen</button>
+    <button type="button" onclick="removeLast()">Verwijderen</button>
+  </form>
+
+  <p id="melding"></p>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const sheetIndex = 2;
+
+const URL = "https://script.google.com/macros/s/AKfycbypPFBDmABPfDLdwWFosDjUimPlt1eoTL8ttGOXRUVmIe2my5dn9h4yPnpxn9Q0OHhznA/exec";
+
+let beschikbarePlekken = 10;
+
+// ➕ toevoegen
+function addPersoon() {
+  const container = document.getElementById("personen");
+  if (!container) return;
+
+  const div = document.createElement("div");
+  div.className = "persoon";
+
+  div.innerHTML = `
+    <input placeholder="Naam" required>
+    <input type="number" placeholder="Leeftijd" required>
+    <input placeholder="Telefoon">
+    <input type="email" placeholder="Email">
+  `;
+
+  container.appendChild(div);
+}
+
+// ❌ verwijderen
+function removeLast() {
+  const container = document.getElementById("personen");
+  if (container && container.lastElementChild) {
+    container.lastElementChild.remove();
+  }
+}
+
+// 📊 teller ophalen (veilig)
+function updateCount() {
+  try {
+    const script = document.createElement("script");
+    script.src = URL + "?index=" + sheetIndex + "&callback=handleCount";
+    document.body.appendChild(script);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function handleCount(data) {
+  try {
+    beschikbarePlekken = data.left || 10;
+
+    const titel = document.getElementById("titel");
+    if (titel) titel.innerText = data.name || "Workshop";
+
+    const status = document.getElementById("status");
+    if (status) {
+      status.innerText = beschikbarePlekken + " plekken beschikbaar";
+    }
+
+    const top = document.getElementById("statusTop");
+    if (top) top.innerText = "Aanmelden workshop";
+
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+// 🚀 verzenden
+function sendData(e) {
+  e.preventDefault();
+
+  const inputs = document.querySelectorAll(".persoon input");
+  if (inputs.length === 0) {
+    alert("Voeg eerst een persoon toe");
+    return;
+  }
+
+  let personen = [];
+
+  for (let i = 0; i < inputs.length; i += 4) {
+    personen.push({
+      naam: inputs[i].value,
+      leeftijd: inputs[i+1].value,
+      telefoon: inputs[i+2].value,
+      email: inputs[i+3].value,
+      index: sheetIndex
+    });
+  }
+
+  document.getElementById("melding").innerText = "Bezig...";
+
+  fetch(URL, {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify(personen)
+  })
+  .then(() => {
+    document.getElementById("melding").innerText = "✅ Gelukt!";
+  })
+  .catch(() => {
+    document.getElementById("melding").innerText = "❌ Fout";
+  });
+}
+
+// START
+window.onload = function() {
+  addPersoon();
+  updateCount();              // 👈 HIER
+  setInterval(updateCount, 2000); // 👈 en deze (optioneel)
+};
+</script>
+
+</body>
+</html>
