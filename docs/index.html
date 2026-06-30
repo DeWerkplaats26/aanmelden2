@@ -154,6 +154,10 @@ function handleCount(data) {
 function sendData(e) {
   e.preventDefault();
 
+  const btn = document.getElementById("btn");
+  btn.disabled = true;
+  btn.innerText = "Bezig met aanmelden...";
+
   if (beschikbarePlekken <= 0) {
   alert("Deze workshop is vol.");
   return;
@@ -188,6 +192,9 @@ function sendData(e) {
   })
   .catch(() => {
     document.getElementById("melding").innerText = "❌ Fout";
+    
+    btn.disabled = false;
+    btn.innerText = "Aanmelden";
   });
 }
 
