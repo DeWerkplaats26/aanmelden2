@@ -57,7 +57,7 @@
     <div id="personen"></div>
 
     <button type="submit" id="btn">Aanmelden</button>
-    <button type="button" onclick="addPersoon()">+ Persoon toevoegen</button>
+    <button type="button" id="addBtn" onclick="addPersoon()">+ Persoon toevoegen</button>
     <button type="button" onclick="removeLast()">Verwijderen</button>
   </form>
 
@@ -74,6 +74,27 @@ let beschikbarePlekken = 8;
 
 // ➕ toevoegen
 function addPersoon() {
+  function addPersoon() {
+
+  if (document.querySelectorAll(".persoon").length >= beschikbarePlekken) {
+    alert("Er zijn niet genoeg plaatsen meer beschikbaar.");
+    return;
+  }
+
+  const container = document.getElementById("personen");
+
+  const div = document.createElement("div");
+  div.className = "persoon";
+
+  div.innerHTML = `
+    <input placeholder="Naam" required>
+    <input type="number" placeholder="Leeftijd" required>
+    <input placeholder="Telefoon">
+    <input type="email" placeholder="Email">
+  `;
+
+  container.appendChild(div);
+}
   const container = document.getElementById("personen");
   if (!container) return;
 
@@ -132,6 +153,15 @@ function handleCount(data) {
 
   } catch (e) {
     console.log(e);
+    const addBtn = document.getElementById("addBtn");
+
+if (beschikbarePlekken <= 1) {
+  addBtn.disabled = true;
+  addBtn.style.background = "#999";
+} else {
+  addBtn.disabled = false;
+  addBtn.style.background = "#645dd1";
+}
   }
 }
 
