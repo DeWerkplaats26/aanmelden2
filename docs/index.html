@@ -183,19 +183,19 @@ function sendData(e) {
   document.getElementById("melding").innerText = "Bezig...";
 
   fetch(URL, {
-    method: "POST",
-    mode: "no-cors",
-    body: JSON.stringify(personen)
-  })
-  .then(() => {
-    document.getElementById("melding").innerText = "✅ Gelukt!";
-  })
-  .catch(() => {
-    document.getElementById("melding").innerText = "❌ Fout";
-    
-    btn.disabled = false;
-    btn.innerText = "Aanmelden";
-  });
+  method: "POST",
+  mode: "no-cors",
+  body: JSON.stringify(personen)
+})
+.then(() => {
+  document.getElementById("melding").innerText = "✅ Aanmelding verzonden!";
+  btn.innerText = "Verzonden";
+})
+.catch(() => {
+  document.getElementById("melding").innerText = "❌ Fout";
+  btn.disabled = false;
+  btn.innerText = "Aanmelden";
+});
 }
 
 // START
