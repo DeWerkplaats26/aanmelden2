@@ -111,7 +111,11 @@ function updateCount() {
 
 function handleCount(data) {
   try {
-    beschikbarePlekken = data.left || 8;
+    if (data.left !== undefined) {
+    beschikbarePlekken = data.left;
+} else {
+    beschikbarePlekken = 8;
+}
 
     const titel = document.getElementById("titel");
     if (titel) titel.innerText = data.name || "Workshop";
