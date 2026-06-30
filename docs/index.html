@@ -111,22 +111,24 @@ function updateCount() {
 
 function handleCount(data) {
   try {
-    if (data.left !== undefined) {
-    beschikbarePlekken = data.left;
-} else {
-    beschikbarePlekken = 8;
-}
+    beschikbarePlekken = data.left ?? 8;
 
-    const titel = document.getElementById("titel");
-    if (titel) titel.innerText = data.name || "Workshop";
+    document.getElementById("titel").innerText = data.name || "Workshop";
 
     const status = document.getElementById("status");
-    if (status) {
+    const btn = document.getElementById("btn");
+
+    if (beschikbarePlekken === 0) {
+      status.innerText = "❌ Deze workshop is vol";
+      btn.disabled = true;
+      btn.style.background = "#999";
+    } else {
       status.innerText = beschikbarePlekken + " plekken beschikbaar";
+      btn.disabled = false;
+      btn.style.background = "#645dd1";
     }
 
-    const top = document.getElementById("statusTop");
-    if (top) top.innerText = "Aanmelden workshop";
+    document.getElementById("statusTop").innerText = "Aanmelden workshop";
 
   } catch (e) {
     console.log(e);
@@ -137,6 +139,10 @@ function handleCount(data) {
 function sendData(e) {
   e.preventDefault();
 
+  if (beschikbarePlekken <= 0) {
+  alert("Deze workshop is vol.");
+  return;
+}
   const inputs = document.querySelectorAll(".persoon input");
   if (inputs.length === 0) {
     alert("Voeg eerst een persoon toe");
