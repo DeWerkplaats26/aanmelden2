@@ -93,13 +93,21 @@
 
   <p id="status"></p>
 
-  <form onsubmit="sendData(event)">
+ <form onsubmit="sendData(event)">
     <div id="personen"></div>
 
-    <button type="submit" id="btn">Aanmelden</button>
-    <button type="button" id="addBtn" onclick="addPersoon()">+ Persoon toevoegen</button>
-    <button type="button" onclick="removeLast()">Verwijderen</button>
-  </form>
+    <label style="display:block; text-align:left; margin:15px 20px; font-size:13px;">
+  <input type="checkbox" required>
+  Ik ga akkoord met de
+  <a href="algemene-voorwaarden.html" target="_blank">Algemene Voorwaarden</a>
+  en het
+  <a href="privacybeleid.html" target="_blank">Privacybeleid</a>.
+</label>
+
+  <button type="submit" id="btn">Aanmelden</button>
+  <button type="button" id="addBtn" onclick="addPersoon()">+ Persoon toevoegen</button>
+  <button type="button" onclick="removeLast()">Verwijderen</button>
+</form>
 
   <p id="melding"></p>
 </div>
