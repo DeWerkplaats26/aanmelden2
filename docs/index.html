@@ -1,333 +1,276 @@
 <!DOCTYPE html>
 <html>
-<head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Workshop aanmelden</title>
 
-<style>
-body{
-    font-family:Arial;
-    background:#f3eeeb;
-    text-align:center;
+<head>
+  <title>Workshop aanmelden</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #f3eeeb;
+      text-align: center;
+    }
+
+    .box {
+      background: white;
+      padding: 25px;
+      margin: 50px auto;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 12px;
+    }
+
+    input, button {
+      width: 90%;
+      padding: 12px;
+      font-size: 16px;
+      margin: 6px;
+    }
+
+    button {
+      background: #645dd1;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 25px;
+    }
+
+    .persoon {
+      border-top: 1px solid #ddd;
+      margin-top: 10px;
+      padding-top: 10px;
+    }
+    input[type="checkbox"] {
+  width: auto;
+  margin: 0 8px 0 0;
+  padding: 0;
+  vertical-align: middle;
 }
 
-.box{
-    background:white;
-    padding:25px;
-    margin:50px auto;
-    width:90%;
-    max-width:450px;
-    border-radius:12px;
+label.voorwaarden {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  text-align: left;
+  font-size: 13px;
+  margin: 15px 6px;
+  line-height: 1.4;
 }
-
-input,button{
-    width:90%;
-    padding:12px;
-    font-size:16px;
-    margin:6px;
-}
-
-button{
-    background:#645dd1;
-    color:white;
-    border:none;
-    border-radius:25px;
-    cursor:pointer;
-}
-
-.persoon{
-    border-top:1px solid #ddd;
-    margin-top:10px;
-    padding-top:10px;
-}
-
-input[type=checkbox]{
-    width:auto;
-    margin-right:8px;
-}
-
-label.voorwaarden{
-    display:flex;
-    align-items:flex-start;
-    gap:8px;
-    text-align:left;
-    font-size:13px;
-    margin-top:15px;
-}
-</style>
-
+  </style>
 </head>
 
 <body>
 
-<img src="logo.jpeg" style="width:300px;margin-bottom:20px;">
-
-<div class="box">
-
+<img src="logo.jpeg" style="width: 300px; margin-bottom: 20px;">
 <p id="statusTop"></p>
 
-<h2 id="titel"></h2>
+<div class="box">
+  <h2>Workshop BeaverBot</h2>
 
-<p id="intro" style="text-align:left"></p>
+  <p style="text-align:left;">
+    Laat je creativiteit de vrije loop tijdens deze leuke en leerzame workshop!
+  </p>
 
-<p id="beschrijving" style="text-align:left"></p>
+  <p style="text-align:left;">
+    Met golfkarton maak je de mooiste creaties: een stoere dinosaurus, een grappige cactus, een snelle raceauto of iets wat je helemaal zelf bedenkt. Heb je een eigen idee? Dan helpt de BeaverBot (een kartonsnijmachine voor kinderen) om jouw ontwerp tot leven te brengen.
+  </p>
 
-<table style="width:100%;text-align:left;border-collapse:collapse;margin-bottom:20px;">
-<tr><td><b>Datum:</b></td><td id="datum"></td></tr>
-<tr><td><b>Tijd:</b></td><td id="tijd"></td></tr>
-<tr><td><b>Locatie:</b></td><td id="locatie"></td></tr>
-<tr><td><b>Leeftijd:</b></td><td id="leeftijd"></td></tr>
-<tr><td><b>Maximaal:</b></td><td id="maximaal"></td></tr>
-<tr><td><b>Kosten:</b></td><td id="kosten"></td></tr>
-</table>
+  <p style="text-align:left;">
+    Tijdens de workshop ontdek je hoe je met techniek, creativiteit en een beetje lef de mooiste kunstwerken kunt maken. Knippen, bouwen, ontwerpen en experimenteren staan centraal. Ervaring is niet nodig – iedereen kan meedoen!
+  </p>
 
-<p id="status"></p>
+  <table style="width:100%; text-align:left; border-collapse:collapse; margin-bottom:20px;">
+    <tr>
+      <td><strong>Datum:</strong></td>
+      <td>donderdag 22 oktober</td>
+    </tr>
+    <tr>
+      <td><strong>Tijd:</strong></td>
+      <td>13.30 – 16.00 uur</td>
+    </tr>
+    <tr>
+      <td><strong>Locatie:</strong></td>
+      <td>Mulderweg 1a</td>
+    </tr>
+    <tr>
+      <td><strong>Leeftijd:</strong></td>
+      <td>vanaf 6 jaar</td>
+    </tr>
+    <tr>
+      <td><strong>Maximaal:</strong></td>
+      <td>8 deelnemers</td>
+    </tr>
+    <tr>
+      <td><strong>Kosten:</strong></td>
+      <td>€20 per persoon (inclusief alle materialen, drinken en iets lekkers)</td>
+    </tr>
+  </table>
 
-<form onsubmit="sendData(event)">
+  <p id="status"></p>
 
-<div id="personen"></div>
+ <form onsubmit="sendData(event)">
+    <div id="personen"></div>
 
-<label class="voorwaarden">
-<input type="checkbox" required>
-<span>
-Ik ga akkoord met de
-<a href="https://dewerkplaats.art/algemene-voorwaarden-de-werkplaats/" target="_blank">Algemene Voorwaarden</a>
-en het
-<a href="privacybeleid.html" target="_blank">Privacybeleid</a>.
-</span>
+    <label style="display:block; text-align:left; margin:15px 20px; font-size:13px;">
+  <label class="voorwaarden">
+  <input type="checkbox" required>
+  <span>
+    Ik ga akkoord met de
+    <a href="https://dewerkplaats.art/algemene-voorwaarden-de-werkplaats/" target="_blank">Algemene Voorwaarden</a>
+    en het
+    <a href="privacybeleid.html" target="_blank">Privacybeleid</a>.
+  </span>
 </label>
 
-<button type="submit" id="btn">Aanmelden</button>
-
-<button type="button" id="addBtn" onclick="addPersoon()">
-+ Persoon toevoegen
-</button>
-
-<button type="button" onclick="removeLast()">
-Verwijderen
-</button>
-
+  <button type="submit" id="btn">Aanmelden</button>
+  <button type="button" id="addBtn" onclick="addPersoon()">+ Persoon toevoegen</button>
+  <button type="button" onclick="removeLast()">Verwijderen</button>
 </form>
 
-<p id="melding"></p>
-
+  <p id="melding"></p>
 </div>
 
 <script>
+const params = new URLSearchParams(window.location.search);
+const sheetIndex = 2;
 
-const sheetIndex = 0;
+const URL = "https://script.google.com/macros/s/AKfycbypPFBDmABPfDLdwWFosDjUimPlt1eoTL8ttGOXRUVmIe2my5dn9h4yPnpxn9Q0OHhznA/exec";
 
-const URL="https://script.google.com/macros/s/AKfycbwTQuKZuv_YlrO-5RCUs9jR01KSWSrx6Txja6gQrONzfxxLj-8Uw8NBDfY8RDduzZ86HA/exec";
+let beschikbarePlekken = 8;
 
-let beschikbarePlekken=8;
+// ➕ toevoegen
+function addPersoon() {
 
-function addPersoon(){
+  if (document.querySelectorAll(".persoon").length >= beschikbarePlekken) {
+    alert("Er zijn niet genoeg plaatsen meer beschikbaar.");
+    return;
+  }
 
-if(document.querySelectorAll(".persoon").length>=beschikbarePlekken){
-alert("Er zijn niet genoeg plaatsen meer beschikbaar.");
-return;
+  const container = document.getElementById("personen");
+  if (!container) return;
+
+  const div = document.createElement("div");
+  div.className = "persoon";
+
+  div.innerHTML = `
+    <input placeholder="Naam" required>
+    <input type="number" placeholder="Leeftijd" required>
+    <input placeholder="Telefoon">
+    <input type="email" placeholder="Email">
+  `;
+
+  container.appendChild(div);
 }
 
-const div=document.createElement("div");
-div.className="persoon";
-
-div.innerHTML=`
-<input placeholder="Naam" required>
-<input type="number" placeholder="Leeftijd" required>
-<input placeholder="Telefoon">
-<input type="email" placeholder="Email">
-`;
-
-document.getElementById("personen").appendChild(div);
-
+// ❌ verwijderen
+function removeLast() {
+  const container = document.getElementById("personen");
+  if (container && container.lastElementChild) {
+    container.lastElementChild.remove();
+  }
 }
 
-function removeLast(){
-
-const container=document.getElementById("personen");
-
-if(container.lastElementChild){
-container.lastElementChild.remove();
+// 📊 teller ophalen (veilig)
+function updateCount() {
+  try {
+    const script = document.createElement("script");
+    script.src = URL + "?index=" + sheetIndex + "&callback=handleCount";
+    document.body.appendChild(script);
+  } catch (e) {
+    console.log(e);
+  }
 }
 
-}
+function handleCount(data) {
+  try {
+    beschikbarePlekken = data.left ?? 8;
 
-function updateCount(){
+    document.getElementById("titel").innerText = data.name || "Workshop";
 
-const oud=document.getElementById("workshopData");
+    const status = document.getElementById("status");
+    const btn = document.getElementById("btn");
+    const addBtn = document.getElementById("addBtn");
 
-if(oud){
-oud.remove();
-}
-
-const script=document.createElement("script");
-
-script.id="workshopData";
-
-script.src=
-URL+
-"?index="+sheetIndex+
-"&callback=handleCount"+
-"&t="+Date.now();
-
-document.body.appendChild(script);
-
-}
-
-function handleCount(data){
-
-beschikbarePlekken=data.left??8;
-
-if(data.info){
-
-titel.innerText=data.info.Titel||"";
-intro.innerText=data.info.Intro||"";
-beschrijving.innerText=data.info.Beschrijving||"";
-
-datum.innerText=data.info.Datum||"";
-tijd.innerText=data.info.Tijd||"";
-locatie.innerText=data.info.Locatie||"";
-leeftijd.innerText=data.info.Leeftijd||"";
-maximaal.innerText=data.info.Maximaal||"";
-kosten.innerText=data.info.Kosten||"";
-
-}
-    const status=document.getElementById("status");
-    const btn=document.getElementById("btn");
-    const addBtn=document.getElementById("addBtn");
-
-    if(beschikbarePlekken<=0){
-
-        status.innerHTML="❌ Deze workshop is vol";
-
-        btn.disabled=true;
-        btn.style.background="#999";
-
-        addBtn.disabled=true;
-        addBtn.style.background="#999";
-
-    }else{
-
-        status.innerHTML=beschikbarePlekken+" plaatsen beschikbaar";
-
-        btn.disabled=false;
-        btn.style.background="#645dd1";
-
-        if(beschikbarePlekken<=1){
-
-            addBtn.disabled=true;
-            addBtn.style.background="#999";
-
-        }else{
-
-            addBtn.disabled=false;
-            addBtn.style.background="#645dd1";
-
-        }
-
+    if (beschikbarePlekken === 0) {
+      status.innerText = "❌ Deze workshop is vol";
+      btn.disabled = true;
+      btn.style.background = "#999";
+    } else {
+      status.innerText = beschikbarePlekken + " plekken beschikbaar";
+      btn.disabled = false;
+      btn.style.background = "#645dd1";
     }
 
-    statusTop.innerText="Aanmelden workshop";
+    if (beschikbarePlekken <= 1) {
+      addBtn.disabled = true;
+      addBtn.style.background = "#999";
+    } else {
+      addBtn.disabled = false;
+      addBtn.style.background = "#645dd1";
+    }
 
+    document.getElementById("statusTop").innerText = "Aanmelden workshop";
+
+  } catch (e) {
+    console.log(e);
+  }
 }
 
-// ----------------------
-// FORMULIER VERZENDEN
-// ----------------------
+// 🚀 verzenden
+function sendData(e) {
+  e.preventDefault();
 
-function sendData(e){
+  const btn = document.getElementById("btn");
+  btn.disabled = true;
+  btn.innerText = "Bezig met aanmelden...";
 
-e.preventDefault();
-
-const btn=document.getElementById("btn");
-
-btn.disabled=true;
-btn.innerText="Bezig met aanmelden...";
-
-if(beschikbarePlekken<=0){
-
-alert("Deze workshop is vol.");
-
-btn.disabled=false;
-btn.innerText="Aanmelden";
-
-return;
-
+  if (beschikbarePlekken <= 0) {
+  alert("Deze workshop is vol.");
+  return;
 }
+  const inputs = document.querySelectorAll(".persoon input");
+  if (inputs.length === 0) {
+    alert("Voeg eerst een persoon toe");
+    return;
+  }
 
-const inputs=document.querySelectorAll(".persoon input");
+  let personen = [];
 
-if(inputs.length===0){
+  for (let i = 0; i < inputs.length; i += 4) {
+    personen.push({
+      naam: inputs[i].value,
+      leeftijd: inputs[i+1].value,
+      telefoon: inputs[i+2].value,
+      email: inputs[i+3].value,
+      index: sheetIndex
+    });
+  }
 
-alert("Voeg eerst een persoon toe");
+  document.getElementById("melding").innerText = "Bezig...";
 
-btn.disabled=false;
-btn.innerText="Aanmelden";
-
-return;
-
-}
-
-let personen=[];
-
-for(let i=0;i<inputs.length;i+=4){
-
-personen.push({
-
-naam:inputs[i].value,
-leeftijd:inputs[i+1].value,
-telefoon:inputs[i+2].value,
-email:inputs[i+3].value,
-index:sheetIndex
-
-});
-
-}
-
-melding.innerHTML="Bezig...";
-
-fetch(URL,{
-
-method:"POST",
-mode:"no-cors",
-body:JSON.stringify(personen)
-
+  fetch(URL, {
+  method: "POST",
+  mode: "no-cors",
+  body: JSON.stringify(personen)
 })
-.then(()=>{
-
-melding.innerHTML="✅ Aanmelding verzonden!";
-
-btn.innerText="Verzonden";
-
-updateCount();
-
+.then(() => {
+  document.getElementById("melding").innerText = "✅ Aanmelding verzonden!";
+  btn.innerText = "Verzonden";
 })
-.catch(()=>{
-
-melding.innerHTML="❌ Er is iets misgegaan.";
-
-btn.disabled=false;
-btn.innerText="Aanmelden";
-
+.catch(() => {
+  document.getElementById("melding").innerText = "❌ Fout";
+  btn.disabled = false;
+  btn.innerText = "Aanmelden";
 });
-
 }
 
-// ----------------------
-// PAGINA START
-// ----------------------
-
-window.onload=function(){
-
-addPersoon();
-
-updateCount();
-
-// Elke 2 seconden opnieuw ophalen
-setInterval(updateCount,2000);
-
+// START
+window.onload = function() {
+  addPersoon();
+  updateCount();              // 👈 HIER
+  setInterval(updateCount, 2000); // 👈 en deze (optioneel)
 };
-
 </script>
 
 </body>
