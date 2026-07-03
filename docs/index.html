@@ -103,7 +103,6 @@ label.voorwaarden {
  <form onsubmit="sendData(event)">
     <div id="personen"></div>
 
-    <label style="display:block; text-align:left; margin:15px 20px; font-size:13px;">
   <label class="voorwaarden">
   <input type="checkbox" required>
   <span>
@@ -175,22 +174,23 @@ function updateCount() {
 
 function handleCount(data) {
   try {
+
     beschikbarePlekken = data.left ?? 8;
 
-    document.getElementById("titel").innerText = data.name || "Workshop";
+    // Workshopinformatie uit de spreadsheet
+    if (data.info) {
 
-    const info = data.info;
+      document.getElementById("titel").innerText = data.info.Titel || "";
+      document.getElementById("intro").innerText = data.info.Intro || "";
+      document.getElementById("beschrijving").innerText = data.info.Beschrijving || "";
 
-    document.getElementById("titel").innerText = info.Titel;
-    document.getElementById("intro").innerText = info.Intro;
-    document.getElementById("beschrijving").innerText = info.Beschrijving;
-
-    document.getElementById("datum").innerText = info.Datum;
-    document.getElementById("tijd").innerText = info.Tijd;
-    document.getElementById("locatie").innerText = info.Locatie;
-    document.getElementById("leeftijd").innerText = info.Leeftijd;
-    document.getElementById("maximaal").innerText = info.Maximaal;
-    document.getElementById("kosten").innerText = info.Kosten;
+      document.getElementById("datum").innerText = data.info.Datum || "";
+      document.getElementById("tijd").innerText = data.info.Tijd || "";
+      document.getElementById("locatie").innerText = data.info.Locatie || "";
+      document.getElementById("leeftijd").innerText = data.info.Leeftijd || "";
+      document.getElementById("maximaal").innerText = data.info.Maximaal || "";
+      document.getElementById("kosten").innerText = data.info.Kosten || "";
+    }
 
     const status = document.getElementById("status");
     const btn = document.getElementById("btn");
