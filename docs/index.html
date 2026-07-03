@@ -275,8 +275,27 @@ function sendData(e) {
 // START
 window.onload = function() {
   addPersoon();
-  updateCount();              // 👈 HIER
-  setInterval(updateCount, 2000); // 👈 en deze (optioneel)
+  function updateCount() {
+  try {
+
+    // Oude script verwijderen
+    const oud = document.getElementById("workshopData");
+    if (oud) oud.remove();
+
+    // Nieuw script laden
+    const script = document.createElement("script");
+    script.id = "workshopData";
+    script.src =
+      URL +
+      "?index=" + sheetIndex +
+      "&callback=handleCount" +
+      "&t=" + new Date().getTime();
+
+    document.body.appendChild(script);
+
+  } catch (e) {
+    console.log(e);
+  }
 };
 </script>
 
