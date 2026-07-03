@@ -65,47 +65,38 @@ label.voorwaarden {
 <img src="logo.jpeg" style="width: 300px; margin-bottom: 20px;">
 <p id="statusTop"></p>
 
-<div class="box">
-  <h2>Workshop BeaverBot</h2>
+<h2 id="titel"></h2>
 
-  <p style="text-align:left;">
-    Laat je creativiteit de vrije loop tijdens deze leuke en leerzame workshop!
-  </p>
+<p id="intro" style="text-align:left;"></p>
 
-  <p style="text-align:left;">
-    Met golfkarton maak je de mooiste creaties: een stoere dinosaurus, een grappige cactus, een snelle raceauto of iets wat je helemaal zelf bedenkt. Heb je een eigen idee? Dan helpt de BeaverBot (een kartonsnijmachine voor kinderen) om jouw ontwerp tot leven te brengen.
-  </p>
+<p id="beschrijving" style="text-align:left;"></p>
 
-  <p style="text-align:left;">
-    Tijdens de workshop ontdek je hoe je met techniek, creativiteit en een beetje lef de mooiste kunstwerken kunt maken. Knippen, bouwen, ontwerpen en experimenteren staan centraal. Ervaring is niet nodig – iedereen kan meedoen!
-  </p>
-
-  <table style="width:100%; text-align:left; border-collapse:collapse; margin-bottom:20px;">
-    <tr>
-      <td><strong>Datum:</strong></td>
-      <td>donderdag 22 oktober</td>
-    </tr>
-    <tr>
-      <td><strong>Tijd:</strong></td>
-      <td>13.30 – 16.00 uur</td>
-    </tr>
-    <tr>
-      <td><strong>Locatie:</strong></td>
-      <td>Mulderweg 1a</td>
-    </tr>
-    <tr>
-      <td><strong>Leeftijd:</strong></td>
-      <td>vanaf 6 jaar</td>
-    </tr>
-    <tr>
-      <td><strong>Maximaal:</strong></td>
-      <td>8 deelnemers</td>
-    </tr>
-    <tr>
-      <td><strong>Kosten:</strong></td>
-      <td>€20 per persoon (inclusief alle materialen, drinken en iets lekkers)</td>
-    </tr>
-  </table>
+<table style="width:100%; text-align:left; border-collapse:collapse; margin-bottom:20px;">
+  <tr>
+    <td><strong>Datum:</strong></td>
+    <td id="datum"></td>
+  </tr>
+  <tr>
+    <td><strong>Tijd:</strong></td>
+    <td id="tijd"></td>
+  </tr>
+  <tr>
+    <td><strong>Locatie:</strong></td>
+    <td id="locatie"></td>
+  </tr>
+  <tr>
+    <td><strong>Leeftijd:</strong></td>
+    <td id="leeftijd"></td>
+  </tr>
+  <tr>
+    <td><strong>Maximaal:</strong></td>
+    <td id="maximaal"></td>
+  </tr>
+  <tr>
+    <td><strong>Kosten:</strong></td>
+    <td id="kosten"></td>
+  </tr>
+</table>
 
   <p id="status"></p>
 
@@ -187,6 +178,19 @@ function handleCount(data) {
     beschikbarePlekken = data.left ?? 8;
 
     document.getElementById("titel").innerText = data.name || "Workshop";
+
+    const info = data.info;
+
+    document.getElementById("titel").innerText = info.Titel;
+    document.getElementById("intro").innerText = info.Intro;
+    document.getElementById("beschrijving").innerText = info.Beschrijving;
+
+    document.getElementById("datum").innerText = info.Datum;
+    document.getElementById("tijd").innerText = info.Tijd;
+    document.getElementById("locatie").innerText = info.Locatie;
+    document.getElementById("leeftijd").innerText = info.Leeftijd;
+    document.getElementById("maximaal").innerText = info.Maximaal;
+    document.getElementById("kosten").innerText = info.Kosten;
 
     const status = document.getElementById("status");
     const btn = document.getElementById("btn");
