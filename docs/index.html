@@ -41,6 +41,22 @@
       margin-top: 10px;
       padding-top: 10px;
     }
+    input[type="checkbox"] {
+  width: auto;
+  margin: 0 8px 0 0;
+  padding: 0;
+  vertical-align: middle;
+}
+
+label.voorwaarden {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  text-align: left;
+  font-size: 13px;
+  margin: 15px 6px;
+  line-height: 1.4;
+}
   </style>
 </head>
 
@@ -97,11 +113,14 @@
     <div id="personen"></div>
 
     <label style="display:block; text-align:left; margin:15px 20px; font-size:13px;">
+  <label class="voorwaarden">
   <input type="checkbox" required>
-  Ik ga akkoord met de
-  <a href="algemene-voorwaarden.html" target="_blank">Algemene Voorwaarden</a>
-  en het
-  <a href="privacybeleid.html" target="_blank">Privacybeleid</a>.
+  <span>
+    Ik ga akkoord met de
+    <a href="algemene-voorwaarden.html" target="_blank">Algemene Voorwaarden</a>
+    en het
+    <a href="privacybeleid.html" target="_blank">Privacybeleid</a>.
+  </span>
 </label>
 
   <button type="submit" id="btn">Aanmelden</button>
