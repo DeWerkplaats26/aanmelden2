@@ -234,18 +234,28 @@ function sendData(e) {
     });
   }
 
+  const btn = document.getElementById("btn");
+btn.disabled = true;
+btn.innerText = "Bezig met aanmelden...";
+
+// Na 5 seconden weer beschikbaar
+setTimeout(() => {
+  btn.disabled = false;
+  btn.innerText = "Aanmelden";
+}, 5000);
+
   document.getElementById("melding").innerText = "Bezig...";
 
   fetch(URL, {
-    method: "POST",
-    mode: "no-cors",
-    body: JSON.stringify(personen)
-  })
-  .then(() => {
+  method: "POST",
+  mode: "no-cors",
+  body: JSON.stringify(personen)
+})
+.then(() => {
   document.getElementById("melding").innerText = "✅ Gelukt!";
   btn.innerText = "Aanmelding verzonden";
-});
-  .catch(() => {
+})
+.catch(() => {
   document.getElementById("melding").innerText = "❌ Er ging iets mis. Probeer het opnieuw.";
 
   btn.disabled = false;
