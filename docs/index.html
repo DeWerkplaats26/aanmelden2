@@ -121,6 +121,7 @@ const sheetIndex = 1;
 const URL = "https://script.google.com/macros/s/AKfycbwTQuKZuv_YlrO-5RCUs9jR01KSWSrx6Txja6gQrONzfxxLj-8Uw8NBDfY8RDduzZ86HA/exec";
 
 let beschikbarePlekken = 8;
+let aanmeldenBezig = false;
 
 // ➕ toevoegen
 function addPersoon() {
@@ -187,9 +188,11 @@ function handleCount(data) {
       addBtn.disabled = true;
       addBtn.style.background = "#999";
     } else {
-      addBtn.disabled = false;
-      addBtn.style.background = "#645dd1";
-    }
+     if (!aanmeldenBezig) {
+  btn.disabled = false;
+  btn.style.background = "#645dd1";
+}
+    
 
     document.getElementById("statusTop").innerText = "Aanmelden workshop";
 
@@ -207,6 +210,7 @@ function sendData(e) {
   // Knop direct uitschakelen
   btn.disabled = true;
   btn.innerText = "Bezig met aanmelden...";
+  aanmeldenBezig = true;
 
   if (beschikbarePlekken <= 0) {
   alert("Deze workshop is vol.");
@@ -256,6 +260,7 @@ setTimeout(() => {
 .catch(() => {
   document.getElementById("melding").innerText = "❌ Er ging iets mis. Probeer het opnieuw.";
 
+  aanmeldenBezig = false;
   btn.disabled = false;
   btn.innerText = "Aanmelden";
 });
