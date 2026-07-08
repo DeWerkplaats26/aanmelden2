@@ -210,13 +210,17 @@ function sendData(e) {
 
   if (beschikbarePlekken <= 0) {
   alert("Deze workshop is vol.");
+  btn.disabled = false;
+  btn.innerText = "Aanmelden";
   return;
 }
   const inputs = document.querySelectorAll(".persoon input");
   if (inputs.length === 0) {
-    alert("Voeg eerst een persoon toe");
-    return;
-  }
+  alert("Voeg eerst een persoon toe");
+  btn.disabled = false;
+  btn.innerText = "Aanmelden";
+  return;
+}
 
   let personen = [];
 
@@ -238,11 +242,15 @@ function sendData(e) {
     body: JSON.stringify(personen)
   })
   .then(() => {
-    document.getElementById("melding").innerText = "✅ Gelukt!";
-  })
+  document.getElementById("melding").innerText = "✅ Gelukt!";
+  btn.innerText = "Aanmelding verzonden";
+});
   .catch(() => {
-    document.getElementById("melding").innerText = "❌ Fout";
-  });
+  document.getElementById("melding").innerText = "❌ Er ging iets mis. Probeer het opnieuw.";
+
+  btn.disabled = false;
+  btn.innerText = "Aanmelden";
+});
 }
 
 // START
