@@ -202,6 +202,12 @@ function handleCount(data) {
 function sendData(e) {
   e.preventDefault();
 
+  const btn = document.getElementById("btn");
+
+  // Knop direct uitschakelen
+  btn.disabled = true;
+  btn.innerText = "Bezig met aanmelden...";
+
   if (beschikbarePlekken <= 0) {
   alert("Deze workshop is vol.");
   return;
