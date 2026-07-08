@@ -41,92 +41,25 @@
       margin-top: 10px;
       padding-top: 10px;
     }
-    input[type="checkbox"] {
-  width: auto;
-  margin: 0 8px 0 0;
-  padding: 0;
-  vertical-align: middle;
-}
-
-label.voorwaarden {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  text-align: left;
-  font-size: 13px;
-  margin: 15px 6px;
-  line-height: 1.4;
-}
   </style>
 </head>
 
 <body>
 
 <img src="logo.jpeg" style="width: 300px; margin-bottom: 20px;">
-<p id="statusTop"></p>
+<p id="statusTop">Laden...</p>
 
 <div class="box">
-  <h2>Workshop BeaverBot</h2>
+  <h2 id="titel">Workshop</h2>
+  <p id="status">Laden...</p>
 
-  <p style="text-align:left;">
-    Laat je creativiteit de vrije loop tijdens deze leuke en leerzame workshop!
-  </p>
-
-  <p style="text-align:left;">
-    Met golfkarton maak je de mooiste creaties: een stoere dinosaurus, een grappige cactus, een snelle raceauto of iets wat je helemaal zelf bedenkt. Heb je een eigen idee? Dan helpt de BeaverBot (een kartonsnijmachine voor kinderen) om jouw ontwerp tot leven te brengen.
-  </p>
-
-  <p style="text-align:left;">
-    Tijdens de workshop ontdek je hoe je met techniek, creativiteit en een beetje lef de mooiste kunstwerken kunt maken. Knippen, bouwen, ontwerpen en experimenteren staan centraal. Ervaring is niet nodig – iedereen kan meedoen!
-  </p>
-
-  <table style="width:100%; text-align:left; border-collapse:collapse; margin-bottom:20px;">
-    <tr>
-      <td><strong>Datum:</strong></td>
-      <td>donderdag 22 oktober</td>
-    </tr>
-    <tr>
-      <td><strong>Tijd:</strong></td>
-      <td>13.30 – 16.00 uur</td>
-    </tr>
-    <tr>
-      <td><strong>Locatie:</strong></td>
-      <td>Mulderweg 1a</td>
-    </tr>
-    <tr>
-      <td><strong>Leeftijd:</strong></td>
-      <td>vanaf 6 jaar</td>
-    </tr>
-    <tr>
-      <td><strong>Maximaal:</strong></td>
-      <td>8 deelnemers</td>
-    </tr>
-    <tr>
-      <td><strong>Kosten:</strong></td>
-      <td>€20 per persoon (inclusief alle materialen, drinken en iets lekkers)</td>
-    </tr>
-  </table>
-
-  <p id="status"></p>
-
- <form onsubmit="sendData(event)">
+  <form onsubmit="sendData(event)">
     <div id="personen"></div>
 
-    <label style="display:block; text-align:left; margin:15px 20px; font-size:13px;">
-  <label class="voorwaarden">
-  <input type="checkbox" required>
-  <span>
-    Ik ga akkoord met de
-    <a href="https://dewerkplaats.art/algemene-voorwaarden-de-werkplaats/" target="_blank">Algemene Voorwaarden</a>
-    en het
-    <a href="privacybeleid.html" target="_blank">Privacybeleid</a>.
-  </span>
-</label>
-
-  <button type="submit" id="btn">Aanmelden</button>
-  <button type="button" id="addBtn" onclick="addPersoon()">+ Persoon toevoegen</button>
-  <button type="button" onclick="removeLast()">Verwijderen</button>
-</form>
+    <button type="submit" id="btn">Aanmelden</button>
+    <button type="button" id="addBtn" onclick="addPersoon()">+ Persoon toevoegen</button>
+    <button type="button" onclick="removeLast()">Verwijderen</button>
+  </form>
 
   <p id="melding"></p>
 </div>
@@ -221,10 +154,6 @@ function handleCount(data) {
 function sendData(e) {
   e.preventDefault();
 
-  const btn = document.getElementById("btn");
-  btn.disabled = true;
-  btn.innerText = "Bezig met aanmelden...";
-
   if (beschikbarePlekken <= 0) {
   alert("Deze workshop is vol.");
   return;
@@ -250,19 +179,16 @@ function sendData(e) {
   document.getElementById("melding").innerText = "Bezig...";
 
   fetch(URL, {
-  method: "POST",
-  mode: "no-cors",
-  body: JSON.stringify(personen)
-})
-.then(() => {
-  document.getElementById("melding").innerText = "✅ Aanmelding verzonden!";
-  btn.innerText = "Verzonden";
-})
-.catch(() => {
-  document.getElementById("melding").innerText = "❌ Fout";
-  btn.disabled = false;
-  btn.innerText = "Aanmelden";
-});
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify(personen)
+  })
+  .then(() => {
+    document.getElementById("melding").innerText = "✅ Gelukt!";
+  })
+  .catch(() => {
+    document.getElementById("melding").innerText = "❌ Fout";
+  });
 }
 
 // START
