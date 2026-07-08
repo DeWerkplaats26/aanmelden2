@@ -50,8 +50,58 @@
 <p id="statusTop">Laden...</p>
 
 <div class="box">
-  <h2 id="titel">Workshop</h2>
-  <p id="status">Laden...</p>
+  <h2>Workshop Resin Art</h2>
+
+<p style="text-align:left;">
+<strong>Maak jouw eigen unieke accessoires!</strong>
+</p>
+
+<p style="text-align:left;">
+Laat je creativiteit schitteren tijdens deze kleurrijke Resin Art-workshop!
+Je gaat aan de slag met epoxyhars en maakt diverse prachtige creaties:
+een boekenlegger, een pen en een sleutelhanger.
+Kies jouw favoriete kleuren, voeg glitters, bloemen, folie of andere decoraties toe en maak elk item helemaal uniek.
+Wil je het extra persoonlijk maken? Voeg dan je eigen naam toe aan je creaties!
+</p>
+
+<p style="text-align:left;">
+Tijdens de workshop ontdek je hoe je met resin werkt en ontwerp je stap voor stap je eigen accessoires.
+Het resultaat? Drie unieke, handgemaakte items die je zelf kunt gebruiken of cadeau kunt geven.
+</p>
+
+<table style="width:100%;text-align:left;border-collapse:collapse;margin-bottom:20px;">
+<tr>
+<td><strong>Datum:</strong></td>
+<td>maandag 19 oktober</td>
+</tr>
+
+<tr>
+<td><strong>Tijd:</strong></td>
+<td>13.30 – 16.00 uur</td>
+</tr>
+
+<tr>
+<td><strong>Locatie:</strong></td>
+<td>Mulderweg 1a</td>
+</tr>
+
+<tr>
+<td><strong>Leeftijd:</strong></td>
+<td>vanaf 9 jaar</td>
+</tr>
+
+<tr>
+<td><strong>Maximaal:</strong></td>
+<td>8 deelnemers</td>
+</tr>
+
+<tr>
+<td><strong>Kosten:</strong></td>
+<td>€30 per persoon (inclusief alle materialen, drinken en iets lekkers)</td>
+</tr>
+</table>
+
+<p id="status">Laden...</p>
 
   <form onsubmit="sendData(event)">
     <div id="personen"></div>
@@ -118,8 +168,6 @@ function updateCount() {
 function handleCount(data) {
   try {
     beschikbarePlekken = data.left ?? 8;
-
-    document.getElementById("titel").innerText = data.name || "Workshop";
 
     const status = document.getElementById("status");
     const btn = document.getElementById("btn");
