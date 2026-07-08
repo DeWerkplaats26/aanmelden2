@@ -180,19 +180,20 @@ function handleCount(data) {
       btn.style.background = "#999";
     } else {
       status.innerText = beschikbarePlekken + " plekken beschikbaar";
-      btn.disabled = false;
-      btn.style.background = "#645dd1";
+
+      if (!aanmeldenBezig) {
+        btn.disabled = false;
+        btn.style.background = "#645dd1";
+      }
     }
 
     if (beschikbarePlekken <= 1) {
       addBtn.disabled = true;
       addBtn.style.background = "#999";
     } else {
-     if (!aanmeldenBezig) {
-  btn.disabled = false;
-  btn.style.background = "#645dd1";
-}
-    
+      addBtn.disabled = false;
+      addBtn.style.background = "#645dd1";
+    }
 
     document.getElementById("statusTop").innerText = "Aanmelden workshop";
 
@@ -200,7 +201,7 @@ function handleCount(data) {
     console.log(e);
   }
 }
-
+  
 // 🚀 verzenden
 function sendData(e) {
   e.preventDefault();
@@ -237,14 +238,6 @@ function sendData(e) {
       index: sheetIndex
     });
   }
-
-// Na 5 seconden weer beschikbaar
-setTimeout(() => {
-  if (btn.innerText !== "Aanmelding verzonden") {
-    btn.disabled = false;
-    btn.innerText = "Aanmelden";
-  }
-}, 5000);
 
   document.getElementById("melding").innerText = "Bezig...";
 
